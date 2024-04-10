@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:auth_test_2024/auth/screens/forget_pass_screen.dart';
 import 'package:auth_test_2024/auth/screens/home_screen.dart';
 import 'package:auth_test_2024/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 children: [
                   MaterialButton(
                       textColor: Colors.deepOrange,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return const ForgetPasswordScreen();
+                        }));
+                      },
                       child: const Text("Forget Password?",
                           style: TextStyle(fontSize: 14)))
                 ]),

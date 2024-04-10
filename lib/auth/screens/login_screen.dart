@@ -6,7 +6,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final loginKey = GlobalKey<FormState>();
     return const SafeArea(
         child:  Scaffold(body: LoginWidget()));
   }
