@@ -5,11 +5,6 @@ class RunApplication extends StatelessWidget {
   const RunApplication({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-    );
-  }
+  Widget build(BuildContext context) =>
+      const MaterialApp(debugShowCheckedModeBanner: false, home: LoginScreen());
 }

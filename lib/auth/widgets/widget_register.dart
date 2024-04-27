@@ -13,9 +13,10 @@ class RegisterWidget extends StatefulWidget {
 class _RegisterWidgetState extends State<RegisterWidget> {
   final email = TextEditingController();
   final password = TextEditingController();
-   final firstName = TextEditingController();
-    final lastName = TextEditingController();
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
   final registerKey = GlobalKey<FormState>();
+  final isShowEye = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -37,7 +38,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             const SizedBox(
               height: 20,
             ),
-            
             const SizedBox(height: 30),
             TextFormField(
               validator: (String? firstName) {
@@ -54,10 +54,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'First Name',
-                labelStyle: TextStyle(fontSize: 14),
+                labelStyle: const TextStyle(fontSize: 14),
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             TextFormField(
               validator: (String? lastName) {
                 if (lastName == null || lastName.isEmpty) {
@@ -73,10 +73,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'Last Name',
-                labelStyle: TextStyle(fontSize: 14),
+                labelStyle: const TextStyle(fontSize: 14),
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             TextFormField(
               validator: (String? email) {
                 if (email == null || email.isEmpty) {
@@ -89,13 +89,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               },
               controller: email,
               decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.mail, color: Colors.grey),
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'New Email Address',
-                labelStyle: TextStyle(fontSize: 14),
+                labelStyle: const TextStyle(fontSize: 14),
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             TextFormField(
               validator: (String? password) {
                 if (password == null || password.isEmpty) {
@@ -106,17 +107,18 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 }
                 return null;
               },
-              
               controller: password,
               decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.lock, color: Colors.grey),
+                suffixIcon: isShowEye
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'Password',
                 labelStyle: const TextStyle(fontSize: 14),
               ),
             ),
-            
-            
             const SizedBox(height: 60),
             MaterialButton(
                 shape: RoundedRectangleBorder(
@@ -124,7 +126,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 minWidth: 150,
                 height: 45,
                 onPressed: () {
-                  
                   if (registerKey.currentState!.validate()) {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
@@ -137,14 +138,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 color: Colors.deepOrange,
                 textColor: Colors.white,
                 child: const Text("Confirm ",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
             const SizedBox(height: 16),
             const Text("Already have an account?",
                 style: TextStyle(fontSize: 13, color: Colors.black)),
             MaterialButton(
                 textColor: Colors.blue,
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
                     return const LoginScreen();
                   }));
                 },

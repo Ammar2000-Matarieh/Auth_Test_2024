@@ -5,13 +5,11 @@ class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-                leading: IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.arrow_back_ios))),
-            body: const RegisterWidget()));
-  }
+  Widget build(BuildContext context) => SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_back_ios))),
+          body: const RegisterWidget()));
 }

@@ -12,6 +12,7 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  final isShowEye = false;
   final email = TextEditingController();
   final password = TextEditingController();
   final loginKey = GlobalKey<FormState>();
@@ -24,20 +25,17 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: SingleChildScrollView(
               child: Column(children: [
             const SizedBox(height: 50),
-            const Row(
-              children: [
-                Text("Hey There!",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black))
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
             const Row(children: [
-              Text("Welcome back, Please use your email\n and password to login",
+              Text("Hey There!",
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black))
+            ]),
+            const SizedBox(height: 20),
+            const Row(children: [
+              Text(
+                  "Welcome back, Please use your email\n and password to login",
                   style: TextStyle(fontSize: 15, color: Colors.grey))
             ]),
             const SizedBox(height: 30),
@@ -56,10 +54,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'Email Address',
-                labelStyle: TextStyle(fontSize: 14),
+                labelStyle: const TextStyle(fontSize: 14),
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             TextFormField(
               validator: (String? password) {
                 if (password == null || password.isEmpty) {
@@ -70,9 +68,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 }
                 return null;
               },
-              
               controller: password,
               decoration: InputDecoration(
+                suffixIcon: isShowEye
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 labelText: 'Password',
@@ -87,7 +87,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                   MaterialButton(
                       textColor: Colors.deepOrange,
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return const ForgetPasswordScreen();
                         }));
                       },
@@ -101,11 +102,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                 minWidth: 150,
                 height: 45,
                 onPressed: () {
-                  
                   if (loginKey.currentState!.validate()) {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
+                      return const HomeScreen();
                     }));
                   } else {
                     log("error");
@@ -114,14 +114,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                 color: Colors.deepOrange,
                 textColor: Colors.white,
                 child: const Text("Login",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
             const SizedBox(height: 16),
             const Text("Don't have an account yet?",
                 style: TextStyle(fontSize: 13, color: Colors.black)),
             MaterialButton(
                 textColor: Colors.blue,
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
                     return const RegisterScreen();
                   }));
                 },
