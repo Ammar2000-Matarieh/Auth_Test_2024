@@ -5,6 +5,7 @@ import 'package:auth_test_2024/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginWidget extends StatefulWidget {
+  static const routeName = 'LoginScreen';
   const LoginWidget({super.key});
 
   @override
@@ -12,6 +13,7 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+
   final isShowEye = false;
   final email = TextEditingController();
   final password = TextEditingController();
@@ -87,6 +89,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   MaterialButton(
                       textColor: Colors.deepOrange,
                       onPressed: () {
+                       
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return const ForgetPasswordScreen();
